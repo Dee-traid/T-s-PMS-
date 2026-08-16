@@ -1,0 +1,83 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#141416"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="180" height="600" fill="#1C1C20"/>
+  <rect x="180" y="0" width="1" height="600" fill="#2B2B2F"/>
+
+  <rect x="24" y="24" width="34" height="34" rx="9" fill="#E8B94B"/>
+  <text x="41" y="46" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="14" fill="#1A1405" text-anchor="middle">T'S</text>
+  <text x="24" y="80" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="14" fill="#F5F3EC">T'S PMS</text>
+
+  <!-- Nav items -->
+  <rect x="24" y="120" width="132" height="34" rx="8" fill="#E8B94B" opacity="0.16"/>
+  <rect x="38" y="132" width="10" height="10" rx="2" fill="#E8B94B"/>
+  <rect x="58" y="132" width="70" height="10" rx="4" fill="#E8B94B"/>
+
+  <rect x="24" y="164" width="132" height="34" rx="8" fill="transparent" stroke="#2B2B2F"/>
+  <rect x="38" y="176" width="10" height="10" rx="2" fill="#77746D"/>
+  <rect x="58" y="176" width="70" height="10" rx="4" fill="#3A3A3E"/>
+
+  <rect x="24" y="208" width="132" height="34" rx="8" fill="transparent" stroke="#2B2B2F"/>
+  <rect x="38" y="220" width="10" height="10" rx="2" fill="#77746D"/>
+  <rect x="58" y="220" width="70" height="10" rx="4" fill="#3A3A3E"/>
+
+  <rect x="24" y="252" width="132" height="34" rx="8" fill="transparent" stroke="#2B2B2F"/>
+  <rect x="38" y="264" width="10" height="10" rx="2" fill="#77746D"/>
+  <rect x="58" y="264" width="70" height="10" rx="4" fill="#3A3A3E"/>
+
+  <!-- Main header -->
+  <rect x="180" y="0" width="620" height="64" fill="#1C1C20"/>
+  <rect x="180" y="63" width="620" height="1" fill="#2B2B2F"/>
+  <text x="204" y="38" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="17" fill="#F5F3EC">Board View</text>
+  <circle cx="756" cy="32" r="15" fill="#7EC8E3"/>
+
+  <!-- Column: TO DO -->
+  <rect x="204" y="94" width="8" height="8" rx="2" fill="#E8B94B"/>
+  <text x="220" y="102" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="12" fill="#A6A39B" letter-spacing="1">TO DO</text>
+  <rect x="204" y="116" width="177" height="440" rx="12" fill="#18181B" stroke="#2B2B2F"/>
+
+  <rect x="216" y="128" width="153" height="80" rx="10" fill="#202024" stroke="#2B2B2F"/>
+  <rect x="216" y="128" width="153" height="4" rx="2" fill="#E8B94B"/>
+  <rect x="228" y="148" width="110" height="7" rx="3.5" fill="#F5F3EC" opacity="0.85"/>
+  <rect x="228" y="162" width="80" height="6" rx="3" fill="#77746D"/>
+  <circle cx="240" cy="188" r="9" fill="#7EC8E3"/>
+
+  <rect x="216" y="222" width="153" height="80" rx="10" fill="#202024" stroke="#2B2B2F"/>
+  <rect x="216" y="222" width="153" height="4" rx="2" fill="#7EC8E3"/>
+  <rect x="228" y="242" width="90" height="7" rx="3.5" fill="#F5F3EC" opacity="0.85"/>
+  <rect x="228" y="256" width="70" height="6" rx="3" fill="#77746D"/>
+  <circle cx="240" cy="282" r="9" fill="#E8B94B"/>
+
+  <!-- Column: IN PROGRESS -->
+  <rect x="401" y="94" width="8" height="8" rx="2" fill="#7EC8E3"/>
+  <text x="417" y="102" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="12" fill="#A6A39B" letter-spacing="1">IN PROGRESS</text>
+  <rect x="401" y="116" width="177" height="440" rx="12" fill="#18181B" stroke="#2B2B2F"/>
+
+  <rect x="413" y="128" width="153" height="80" rx="10" fill="#202024" stroke="#2B2B2F"/>
+  <rect x="413" y="128" width="153" height="4" rx="2" fill="#7EC8E3"/>
+  <rect x="425" y="148" width="120" height="7" rx="3.5" fill="#F5F3EC" opacity="0.85"/>
+  <rect x="425" y="162" width="85" height="6" rx="3" fill="#77746D"/>
+  <circle cx="437" cy="188" r="9" fill="#E8B94B"/>
+
+  <rect x="413" y="222" width="153" height="80" rx="10" fill="#202024" stroke="#2B2B2F"/>
+  <rect x="413" y="222" width="153" height="4" rx="2" fill="#E8B94B"/>
+  <rect x="425" y="242" width="100" height="7" rx="3.5" fill="#F5F3EC" opacity="0.85"/>
+  <rect x="425" y="256" width="75" height="6" rx="3" fill="#77746D"/>
+  <circle cx="437" cy="282" r="9" fill="#7EC8E3"/>
+
+  <!-- Column: DONE -->
+  <rect x="598" y="94" width="8" height="8" rx="2" fill="#E8B94B"/>
+  <text x="614" y="102" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="12" fill="#A6A39B" letter-spacing="1">DONE</text>
+  <rect x="598" y="116" width="177" height="440" rx="12" fill="#18181B" stroke="#2B2B2F"/>
+
+  <rect x="610" y="128" width="153" height="66" rx="10" fill="#202024" stroke="#2B2B2F"/>
+  <rect x="610" y="128" width="153" height="4" rx="2" fill="#E8B94B"/>
+  <rect x="622" y="148" width="105" height="7" rx="3.5" fill="#F5F3EC" opacity="0.6"/>
+  <rect x="622" y="162" width="70" height="6" rx="3" fill="#77746D" opacity="0.7"/>
+
+  <rect x="610" y="208" width="153" height="66" rx="10" fill="#202024" stroke="#2B2B2F"/>
+  <rect x="610" y="208" width="153" height="4" rx="2" fill="#7EC8E3"/>
+  <rect x="622" y="228" width="95" height="7" rx="3.5" fill="#F5F3EC" opacity="0.6"/>
+  <rect x="622" y="242" width="65" height="6" rx="3" fill="#77746D" opacity="0.7"/>
+</svg>

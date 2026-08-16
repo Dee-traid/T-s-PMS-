@@ -1,0 +1,212 @@
+-- User's Table
+CREATE TABLE users (
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    name VARCHAR(225) NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(50) NOT NULL,
+    role VARCHAR(50) DEFAULT 'user',
+    check  (role IN('user', 'admin', 'staff_admin'))
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE password_reset_token(
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE TABLE email_verification_token(
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE roles (
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    role_name VARCHAR(50) NOT NULL,
+    permissions TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE permissions (
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    permission_name VARCHAR(50) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_sessions (
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    session_token VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE user_activity_logs (
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    activity_type VARCHAR(50) NOT NULL,
+    activity_description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE departments(
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    department VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE projects(
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    project_name VARCHAR(225) NOT NULL,
+    descriptions TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+);
+
+CREATE TABLE project_members(
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    project_id VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    role VARCHAR(50) DEFAULT 'member',
+    check  (role IN('member', 'admin', 'viewer')),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (project_id) REFERENCES projects(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE tasks(
+    id Bigserial PRIMARY KEY NOT NULL,
+    project_id VARCHAR(50) NOT NULL,
+    task_name VARCHAR(225) NOT NULL,
+    descriptions TEXT NOT NULL,
+    status VARCHAR(50) DEFAULT 'pending',
+    check  (status IN('pending', 'in_progress', 'completed')),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+);
+
+CREATE TABLE milestones(
+    id Bigserial PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    project_id VARCHAR(50) NOT NULL,
+    status VARCHAR(50) DEFAULT 'not_started',
+    check  (status IN('not_started', 'in_progress', 'completed', 'cancelled')),
+    descriptions TEXT NOT NULL,
+    start_date TIMESTAMP NOT NULL,
+    due_date TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (project_id) REFERENCES projects(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE task_comments(
+    id Bigserial PRIMARY KEY NOT NULL,
+    task_id VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE task_attachments(
+    id Bigserial PRIMARY KEY NOT NULL,
+    task_id VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE documents(
+    id Bigserial PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    document_name VARCHAR(225) NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE task_history(
+    id Bigserial PRIMARY KEY NOT NULL,
+    task_id VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    action_description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE notifications(
+    id Bigserial PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    message TEXT NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE activity_logs(
+    id Bigserial PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    action VARCHAR(50) NOT NULL,
+    action_description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE reports(
+    id Bigserial PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    report_type VARCHAR(50) NOT NULL,
+    report_data TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE leave_requests(
+    id VARCHAR(50) PRIMARY KEY NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    leave_type VARCHAR(50) NOT NULL,
+    start_date TIMESTAMP NOT NULL,
+    end_date TIMESTAMP NOT NULL,
+    status VARCHAR(50) DEFAULT 'pending',
+    check  (status IN('pending', 'approved', 'rejected')),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
