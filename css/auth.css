@@ -1,11 +1,87 @@
+/* ==========================================================================
+   T'S PMS — Auth Pages (Login / Register)
+   Built on top of style.css — this file assumes style.css is loaded first
+   for tokens, reset, and .btn. Only auth-specific layout lives here.
+   ========================================================================== */
+
 .auth-page {
   background-color: var(--bg);
 }
- 
+
+/* --------------------------------------------------------------------------
+   SPLIT SHELL — illustration on one side, the card (all 5 views) on the
+   other. The illustration panel is persistent across views; only the card
+   content changes. Collapses to card-only below 960px — an office scene
+   at phone width would be too small to read anyway.
+   -------------------------------------------------------------------------- */
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.auth-visual {
+  position: relative;
+  background-color: var(--bg-panel-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  overflow: hidden;
+}
+
+.auth-visual::before,
+.auth-visual::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.auth-visual::before {
+  width: 300px;
+  height: 300px;
+  background-color: var(--gold-soft);
+  top: -60px;
+  left: -60px;
+}
+
+.auth-visual::after {
+  width: 260px;
+  height: 260px;
+  background-color: var(--blue-soft);
+  bottom: -60px;
+  right: -40px;
+}
+
+.auth-visual img {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  z-index: 1;
+}
+
+.auth-main {
+  position: relative;
+  background: linear-gradient(135deg, #F3F5F9 0%, #E9ECF2 45%, #DEE4ED 100%);
+}
+
+@media (max-width: 960px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-visual {
+    display: none;
+  }
+}
+
 .auth-back {
   position: fixed;
   top: var(--space-3);
   left: var(--space-3);
+  z-index: 50;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -14,57 +90,104 @@
   color: var(--text-secondary);
   transition: color var(--transition);
 }
- 
+
 .auth-back:hover {
   color: var(--ink);
 }
- 
+
 .auth-wrapper {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--space-4) var(--space-3);
 }
- 
+
+/* 
+   GLASSMORPHISM — translucent card + backdrop blur, sitting over the
+   gradient + blobs behind it. background-color uses rgba (not a solid
+   token) specifically so it stays translucent; border/shadow are lighter
+   than the old solid-neumorphic version since glass reads through edges
+   rather than needing a heavy drop shadow to separate from the page.
+*/
 .auth-card {
   width: 100%;
-  max-width: 400px;
-  background-color: var(--bg-panel);
+  max-width: 460px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-neu);
+  box-shadow: 0 8px 32px rgba(20, 24, 31, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: var(--space-5) var(--space-4);
   text-align: center;
 }
- 
+
 .auth-logo {
   display: flex;
   justify-content: center;
   margin-bottom: var(--space-3);
 }
- 
+
 .auth-logo img {
   width: 52px;
   height: 52px;
 }
- 
+
 .auth-card h1 {
   font-size: var(--fs-h3);
   margin-bottom: 0.25rem;
 }
- 
+
 .auth-subtext {
   font-size: var(--fs-small);
   margin-bottom: var(--space-4);
 }
- 
+
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   text-align: left;
 }
- 
+
+/* 
+   Two fields side by side (name+email, password+confirm) — this is what
+   actually makes register/reset shorter and wider instead of one long
+   vertical stack. Each .form-row counts as ONE child of .auth-form's flex
+   gap, same as any single field would.
+*/
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 
+   Password strength bar + label, grouped as ONE block directly under the
+   password/confirm row. Previously these were two separate .auth-form
+   children, each picking up the full flex "gap" above AND below — with
+   almost no visual content (a 6px bar, an often-empty label), that gap
+   read as a large dead zone between password and confirm. Grouping them
+   removes the duplicate spacing.
+*/
+.password-field-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: -0.5rem;
+}
+
+/* Screen-reader-only labels — inputs use placeholders visually, per the
+   reference design, but every input still needs a real <label> for
+   accessibility. This hides it visually without removing it from the DOM. */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -76,11 +199,11 @@
   white-space: nowrap;
   border: 0;
 }
- 
+
 .form-group.has-icon {
   position: relative;
 }
- 
+
 .form-group.has-icon > i {
   position: absolute;
   left: 16px;
@@ -90,7 +213,7 @@
   font-size: 1.05rem;
   pointer-events: none;
 }
- 
+
 .form-group.has-icon input {
   width: 100%;
   padding: 0.85rem 2.75rem;
@@ -104,16 +227,16 @@
   color: var(--ink);
   transition: border-color var(--transition);
 }
- 
+
 .form-group.has-icon input::placeholder {
   color: var(--text-muted);
 }
- 
+
 .form-group.has-icon input:focus {
   outline: none;
   border-color: var(--gold);
 }
- 
+
 .input-toggle {
   position: absolute;
   right: 14px;
@@ -123,11 +246,11 @@
   font-size: 1.05rem;
   display: flex;
 }
- 
+
 .input-toggle:hover {
   color: var(--ink);
 }
- 
+
 .auth-row {
   display: flex;
   align-items: center;
@@ -136,7 +259,7 @@
   flex-wrap: wrap;
   gap: var(--space-1);
 }
- 
+
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -144,39 +267,39 @@
   color: var(--text-secondary);
   cursor: pointer;
 }
- 
+
 .checkbox-label input {
   accent-color: var(--gold-dark);
 }
- 
+
 .auth-link {
   color: var(--blue);
   font-weight: 500;
 }
- 
+
 .auth-link:hover {
   color: var(--gold-dark);
 }
- 
+
 .btn-block {
   width: 100%;
 }
- 
+
 .auth-terms {
   font-size: var(--fs-small);
   color: var(--text-secondary);
   line-height: 1.4;
 }
- 
+
 .auth-terms a {
   color: var(--blue);
   font-weight: 500;
 }
- 
+
 .auth-terms a:hover {
   color: var(--gold-dark);
 }
- 
+
 .auth-divider {
   position: relative;
   text-align: center;
@@ -186,7 +309,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
- 
+
 .auth-divider::before {
   content: '';
   position: absolute;
@@ -197,22 +320,28 @@
   background-color: var(--border);
   z-index: 0;
 }
- 
+
 .auth-divider span {
   position: relative;
-  background-color: var(--bg-panel);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 0 0.75rem;
   z-index: 1;
 }
- 
 
+/* 
+   Social sign-in buttons — deliberately plain circles with a letter/abbreviation
+   rather than reproduced brand logos (Google's "G" mark, GitHub's octocat, etc.
+   are trademarked assets). If you later want official-looking SSO buttons,
+   use each provider's official button component/SDK rather than a hand-drawn
+   copy of their logo.
+*/
 .auth-social {
   display: flex;
   justify-content: center;
   gap: var(--space-2);
   margin-bottom: var(--space-4);
 }
- 
+
 .social-btn {
   width: 44px;
   height: 44px;
@@ -227,52 +356,103 @@
   color: var(--ink);
   transition: transform var(--transition), color var(--transition);
 }
- 
+
 .social-btn:hover {
   transform: translateY(-2px);
   color: var(--gold-dark);
 }
- 
+
 .auth-footer-text {
   font-size: var(--fs-small);
   color: var(--text-secondary);
 }
- 
+
 .auth-footer-text a {
   color: var(--gold-dark);
   font-weight: 600;
 }
- 
+
 .auth-footer-text a:hover {
   text-decoration: underline;
 }
- 
+
 @media (max-width: 480px) {
   .auth-card {
     padding: var(--space-4) var(--space-3);
   }
 }
- 
+
 /* ============================================================================
    ANIMATION SUPPORT
    Each block below is numbered to match the list in chat / the comments in
    auth.js. JS toggles classes or sets a few custom properties; everything
    else (the actual motion) lives here.
    ============================================================================ */
- 
-/* -- 1. Staggered entrance ------------------------------------------------ */
+
+/* -- 1. Staggered entrance ------------------------------------------------
+   Changed for the SPA: JS now toggles "stagger-in-done" directly on each
+   element every time a view becomes active (not just once on page load),
+   so switching views always re-plays this reveal. */
 .stagger-in {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 420ms ease, transform 420ms ease;
   transition-delay: calc(var(--i, 0) * 60ms);
 }
- 
-.auth-card.is-revealed .stagger-in {
+
+.stagger-in.stagger-in-done {
   opacity: 1;
   transform: translateY(0);
 }
- 
+
+/* -- 0. View router (auth.html only) ---------------------------------------
+   Only one .auth-view is ever laid out at a time. "view-entering" and
+   "view-leaving" are transient states JS applies for ~200ms while
+   transitioning; "active" is the resting visible state. */
+.auth-view {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.auth-view.view-entering {
+  display: block;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.auth-view.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-view.view-leaving {
+  display: block;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* -- Secondary back button, placed beneath the card itself. The fixed
+   top-left .auth-back stays for larger screens; this one is easier to
+   find/tap on mobile, where a small fixed corner link is easy to miss. */
+.auth-secondary-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: var(--space-3);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+.auth-secondary-back:hover {
+  color: var(--ink);
+}
+
 /* -- 2. Floating background blobs (+ parallax read from JS) -------------- */
 .auth-bg-blobs {
   position: fixed;
@@ -281,7 +461,7 @@
   z-index: 0;
   pointer-events: none;
 }
- 
+
 .blob {
   position: absolute;
   border-radius: 50%;
@@ -291,35 +471,37 @@
   transform: translate(var(--parallax-x, 0), var(--parallax-y, 0));
   transition: transform 300ms ease-out;
 }
- 
+
 .blob-1 { width: 320px; height: 320px; background-color: var(--gold); top: -100px; left: -100px; }
 .blob-2 { width: 260px; height: 260px; background-color: var(--blue); bottom: -80px; right: -80px; animation-duration: 17s; animation-delay: -4s; }
 .blob-3 { width: 200px; height: 200px; background-color: var(--gold-bright); top: 45%; right: 8%; animation-duration: 20s; animation-delay: -9s; }
- 
+
 @keyframes blobFloat {
   0%, 100% { margin: 0; }
   50% { margin: -20px 0 0 30px; }
 }
- 
+
 .auth-wrapper,
 .auth-card {
   position: relative;
   z-index: 1;
 }
- 
+
 /* -- 3. Card tilt ---------------------------------------------------------- */
 .auth-wrapper {
   perspective: 1200px;
 }
- 
+
 .auth-card {
   transform-style: preserve-3d;
   transition: transform 150ms ease-out;
   will-change: transform;
 }
- 
 
- 
+/* -- 4. Magnetic button ----------------------------------------------------
+   No extra CSS needed beyond the transform transition .btn already has in
+   style.css — JS sets translate(), CSS eases it. */
+
 /* -- 5. Cursor spotlight ---------------------------------------------------- */
 .cursor-spotlight {
   position: fixed;
@@ -333,29 +515,29 @@
   transition: opacity 250ms ease;
   opacity: 0;
 }
- 
+
 /* -- 6. Password icon morph ------------------------------------------------- */
 .input-toggle i {
   display: inline-block;
   transition: transform 150ms ease, opacity 150ms ease;
 }
- 
+
 .input-toggle.morphing i,
 .input-toggle i.morphing {
   transform: scale(0.4) rotate(90deg);
   opacity: 0;
 }
- 
+
 /* -- 7. Focus lift on input icon --------------------------------------------- */
 .form-group.has-icon > i {
   transition: color 150ms ease, transform 150ms ease;
 }
- 
+
 .form-group.has-icon:focus-within > i {
   color: var(--gold-dark);
   transform: translateY(-50%) scale(1.12);
 }
- 
+
 /* -- 8. Shake + error state --------------------------------------------------- */
 @keyframes shakeX {
   10%, 90% { transform: translateX(-2px); }
@@ -363,36 +545,36 @@
   30%, 50%, 70% { transform: translateX(-7px); }
   40%, 60% { transform: translateX(7px); }
 }
- 
+
 .form-group.has-icon.is-invalid input {
   animation: shakeX 500ms ease;
   border-color: #E0575A;
   box-shadow: inset 3px 3px 6px rgba(224, 87, 90, 0.15), inset -3px -3px 6px rgba(255, 255, 255, 0.7), 0 0 0 3px rgba(224, 87, 90, 0.12);
 }
- 
+
 .field-error {
   font-size: 0.75rem;
   color: #E0575A;
   margin-top: 0.3rem;
   padding-left: 0.25rem;
 }
- 
+
 /* -- 9. Valid state + success checkmark draw --------------------------------- */
 .form-group.has-icon.is-valid input {
   border-color: #3FA66B;
 }
- 
+
 .auth-success {
   text-align: center;
 }
- 
+
 .success-check {
   width: 64px;
   height: 64px;
   margin: 0 auto var(--space-3);
   overflow: visible;
 }
- 
+
 .success-check circle {
   fill: none;
   stroke: #3FA66B;
@@ -401,7 +583,7 @@
   stroke-dashoffset: 158;
   transition: stroke-dashoffset 500ms ease;
 }
- 
+
 .success-check path {
   fill: none;
   stroke: #3FA66B;
@@ -412,49 +594,49 @@
   stroke-dashoffset: 40;
   transition: stroke-dashoffset 350ms ease 450ms;
 }
- 
+
 .success-check.draw circle,
 .success-check.draw path {
   stroke-dashoffset: 0;
 }
- 
+
 .auth-success h2 {
   font-size: var(--fs-h3);
   margin-bottom: var(--space-1);
 }
- 
+
 .auth-success p {
   font-size: var(--fs-small);
   margin-bottom: var(--space-3);
 }
- 
+
 .auth-form-wrap {
   transition: opacity 220ms ease, transform 220ms ease;
 }
- 
+
 .auth-form-wrap.fade-out-up {
   opacity: 0;
   transform: translateY(-10px);
 }
- 
+
 [id$="-success"] {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 350ms ease, transform 350ms ease;
 }
- 
+
 [id$="-success"].is-revealed {
   opacity: 1;
   transform: translateY(0);
 }
- 
+
 /* -- 10. Button loading spinner ------------------------------------------------ */
 .btn.is-loading {
   color: transparent !important;
   pointer-events: none;
   position: relative;
 }
- 
+
 .btn.is-loading::after {
   content: '';
   position: absolute;
@@ -468,33 +650,33 @@
   border-radius: 50%;
   animation: btnSpin 650ms linear infinite;
 }
- 
+
 @keyframes btnSpin {
   to { transform: rotate(360deg); }
 }
- 
-/* -- 11. Password strength meter ------------------------------------------------ */
+
+/* -- 11. Password strength meter ------------------------------------------------
+   Lives inside .password-field-meta now (see above) — no margin hacks
+   needed here anymore, the wrapper handles spacing. */
 .password-strength {
   height: 6px;
   background-color: var(--border);
   border-radius: var(--radius-pill);
   overflow: hidden;
-  margin-top: -0.4rem;
 }
- 
+
 .password-strength-bar {
   height: 100%;
   width: 0%;
   transition: width 250ms ease, background-color 250ms ease;
 }
- 
+
 .password-strength-label {
   font-size: 0.75rem;
   color: var(--text-muted);
-  margin-top: 0.2rem;
   min-height: 1em;
 }
- 
+
 /* -- 12. Password match indicator ------------------------------------------------ */
 .match-icon {
   position: absolute;
@@ -505,30 +687,30 @@
   opacity: 0;
   transition: transform 200ms ease, opacity 200ms ease, color 200ms ease;
 }
- 
+
 .match-icon.show {
   opacity: 1;
   transform: translateY(-50%) scale(1);
 }
- 
+
 .match-icon.match { color: #3FA66B; }
 .match-icon.no-match { color: #E0575A; }
- 
+
 /* -- 13. Checkbox pulse ------------------------------------------------------------ */
 @keyframes checkPulse {
   0% { transform: scale(1); }
   45% { transform: scale(1.18); }
   100% { transform: scale(1); }
 }
- 
+
 .checkbox-label input {
   transition: transform 150ms ease;
 }
- 
+
 .checkbox-label.pulse input {
   animation: checkPulse 320ms ease;
 }
- 
+
 /* -- 14. Toast notifications -------------------------------------------------------- */
 .toast-container {
   position: fixed;
@@ -539,7 +721,7 @@
   gap: var(--space-2);
   z-index: 300;
 }
- 
+
 .toast {
   background-color: var(--bg-panel);
   border: 1px solid var(--border);
@@ -556,15 +738,15 @@
   opacity: 0;
   transition: transform 300ms ease, opacity 300ms ease;
 }
- 
+
 .toast.show {
   transform: translateX(0);
   opacity: 1;
 }
- 
+
 .toast-success i { color: #3FA66B; }
 .toast-error i { color: #E0575A; }
- 
+
 /* -- 15. OTP inputs ------------------------------------------------------------------- */
 .otp-row {
   display: flex;
@@ -572,7 +754,7 @@
   justify-content: center;
   margin-bottom: var(--space-3);
 }
- 
+
 .otp-input {
   width: 46px;
   height: 54px;
@@ -587,16 +769,16 @@
   box-shadow: inset 3px 3px 6px rgba(163, 177, 198, 0.25), inset -3px -3px 6px rgba(255, 255, 255, 0.7);
   transition: transform 150ms ease, border-color 150ms ease;
 }
- 
+
 .otp-input:focus {
   outline: none;
   border-color: var(--gold);
 }
- 
+
 .otp-input.pop {
   transform: scale(1.15);
 }
- 
+
 /* -- 16. Countdown ring --------------------------------------------------------------- */
 .countdown-row {
   display: flex;
@@ -607,19 +789,19 @@
   color: var(--text-secondary);
   margin-bottom: var(--space-4);
 }
- 
+
 .countdown-ring {
   width: 22px;
   height: 22px;
   transform: rotate(-90deg);
 }
- 
+
 .countdown-ring .ring-bg {
   fill: none;
   stroke: var(--border);
   stroke-width: 3;
 }
- 
+
 .countdown-ring .ring-fg {
   fill: none;
   stroke: var(--gold);
@@ -627,17 +809,17 @@
   stroke-linecap: round;
   transition: stroke-dashoffset 1s linear;
 }
- 
+
 .resend-link {
   color: var(--blue);
   font-weight: 600;
 }
- 
+
 .resend-link.disabled {
   color: var(--text-muted);
   pointer-events: none;
 }
- 
+
 /* -- 17. Confetti ----------------------------------------------------------------------- */
 .confetti-piece {
   position: fixed;
@@ -649,35 +831,35 @@
   z-index: 400;
   animation: confettiFall linear forwards;
 }
- 
+
 @keyframes confettiFall {
   to {
     transform: translateY(110vh) rotate(720deg);
     opacity: 0;
   }
 }
- 
+
 /* -- 18. Social button hover tilt --------------------------------------------------------- */
 .social-btn:hover {
   transform: translateY(-3px) rotate(-6deg);
 }
- 
+
 /* -- 19. Page fade transition ---------------------------------------------------------------- */
 .auth-page {
   opacity: 1;
   transition: opacity 220ms ease;
 }
- 
+
 .auth-page.page-fade-out {
   opacity: 0;
 }
- 
+
 /* -- Ripple (button click) ------------------------------------------------------------------- */
 .auth-card .btn {
   position: relative;
   overflow: hidden;
 }
- 
+
 .ripple {
   position: absolute;
   border-radius: 50%;
@@ -686,15 +868,14 @@
   animation: rippleAnim 600ms ease-out;
   pointer-events: none;
 }
- 
+
 .btn-outline .ripple {
   background-color: rgba(20, 24, 31, 0.12);
 }
- 
+
 @keyframes rippleAnim {
   to {
     transform: scale(2.6);
     opacity: 0;
   }
 }
- 

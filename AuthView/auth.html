@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Log In — T'S PMS</title>
+        <meta name="description" content="Log in, sign up, or recover your T'S PMS account.">
+        <link rel="icon" type="image/svg+xml" href="../images/logo.svg">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/auth.css">
+    </head>
+    <body class="auth-page">
+        <a href="../index.html" class="auth-back">
+            <i class="uil uil-arrow-left"></i>
+            <span>Back to home</span>
+        </a>
+
+        <div class="auth-shell">
+            <div class="auth-visual">
+                <img src="../images/auth-illustration.svg" alt="A team seated around a table, each working on T'S PMS boards on their laptops, with a shared dashboard on the wall screen behind them">
+            </div>
+
+            <div class="auth-main">
+
+                <div class="auth-bg-blobs" aria-hidden="true">
+                    <span class="blob blob-1"></span>
+                    <span class="blob blob-2"></span>
+                    <span class="blob blob-3"></span>
+                </div>
+                <div class="cursor-spotlight" aria-hidden="true"></div>
+
+        <div class="auth-wrapper">
+            <div class="auth-card">
+
+                <!-- ============================================================
+                     VIEW: LOGIN
+                     ============================================================ -->
+                <section class="auth-view" data-view="login">
+
+                    <div class="auth-logo">
+                        <img src="../images/logo.svg" alt="T'S PMS logo">
+                    </div>
+
+                    <h1>Welcome back</h1>
+                    <p class="auth-subtext">Please sign in to continue</p>
+
+                    <form id="login-form" class="auth-form" novalidate>
+
+                        <div class="form-group has-icon">
+                            <label for="login-email" class="sr-only">Email address</label>
+                            <i class="uil uil-envelope" aria-hidden="true"></i>
+                            <input type="email" id="login-email" name="email" placeholder="Email address" autocomplete="email" required>
+                        </div>
+
+                        <div class="form-group has-icon">
+                            <label for="login-password" class="sr-only">Password</label>
+                            <i class="uil uil-lock" aria-hidden="true"></i>
+                            <input type="password" id="login-password" name="password" placeholder="Password" autocomplete="current-password" required>
+                            <button type="button" class="input-toggle" id="toggle-login-password" aria-label="Show password">
+                                <i class="uil uil-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <div class="auth-row">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#forgot" data-view-link="forgot" class="auth-link">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+
+                    </form>
+
+                    <div class="auth-divider"><span>or continue with</span></div>
+
+                    <div class="auth-social">
+                        <button type="button" class="social-btn" aria-label="Continue with Google">G</button>
+                        <button type="button" class="social-btn" aria-label="Continue with GitHub">Gh</button>
+                        <button type="button" class="social-btn" aria-label="Continue with X">X</button>
+                    </div>
+
+                    <p class="auth-footer-text">Don't have an account? <a href="#register" data-view-link="register">Sign up</a></p>
+
+                </section>
+
+                <!-- ============================================================
+                     VIEW: REGISTER
+                     ============================================================ -->
+                <section class="auth-view" data-view="register">
+
+                    <div class="auth-form-wrap" id="register-form-wrap">
+
+                        <div class="auth-logo">
+                            <img src="../images/logo.svg" alt="T'S PMS logo">
+                        </div>
+
+                        <h1>Create your account</h1>
+                        <p class="auth-subtext">Start organizing your team's work in minutes</p>
+
+                        <form id="register-form" class="auth-form" novalidate>
+
+                            <div class="form-group has-icon">
+                                <label for="register-name" class="sr-only">Full name</label>
+                                <i class="uil uil-user" aria-hidden="true"></i>
+                                <input type="text" id="register-name" name="name" placeholder="Full name" autocomplete="name" required>
+                            </div>
+
+                            <div class="form-group has-icon">
+                                <label for="register-email" class="sr-only">Email address</label>
+                                <i class="uil uil-envelope" aria-hidden="true"></i>
+                                <input type="email" id="register-email" name="email" placeholder="Email address" autocomplete="email" required>
+                            </div>
+
+                            <div class="form-group has-icon">
+                                <label for="register-password" class="sr-only">Password</label>
+                                <i class="uil uil-lock" aria-hidden="true"></i>
+                                <input type="password" id="register-password" name="password" placeholder="Password" autocomplete="new-password" required>
+                                <button type="button" class="input-toggle" id="toggle-register-password" aria-label="Show password">
+                                    <i class="uil uil-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                            <div class="password-strength">
+                                <div class="password-strength-bar" id="password-strength-bar"></div>
+                            </div>
+                            <p class="password-strength-label" id="password-strength-label"></p>
+
+                            <div class="form-group has-icon">
+                                <label for="register-confirm-password" class="sr-only">Confirm password</label>
+                                <i class="uil uil-lock-alt" aria-hidden="true"></i>
+                                <input type="password" id="register-confirm-password" name="confirm_password" placeholder="Confirm password" autocomplete="new-password" required>
+                                <i class="uil match-icon" id="confirm-match-icon" aria-hidden="true"></i>
+                            </div>
+
+                            <label class="checkbox-label auth-terms">
+                                <input type="checkbox" name="agree_terms" required>
+                                <span>I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></span>
+                            </label>
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Create Account</button>
+
+                        </form>
+
+                        <div class="auth-divider"><span>or continue with</span></div>
+
+                        <div class="auth-social">
+                            <button type="button" class="social-btn" aria-label="Continue with Google">G</button>
+                            <button type="button" class="social-btn" aria-label="Continue with GitHub">Gh</button>
+                            <button type="button" class="social-btn" aria-label="Continue with X">X</button>
+                        </div>
+
+                        <p class="auth-footer-text">Already have an account? <a href="#login" data-view-link="login">Log in</a></p>
+
+                    </div>
+
+                    <div class="auth-success" id="register-success" hidden>
+                        <svg class="success-check" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="24"></circle>
+                            <path d="M14 27l7 7 17-17"></path>
+                        </svg>
+                        <h2>You're all set!</h2>
+                        <p>Your account has been created. Taking you to log in&hellip;</p>
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                     VIEW: FORGOT PASSWORD
+                     ============================================================ -->
+                <section class="auth-view" data-view="forgot">
+
+                    <div class="auth-form-wrap" id="forgot-form-wrap">
+
+                        <div class="auth-logo">
+                            <img src="../images/logo.svg" alt="T'S PMS logo">
+                        </div>
+
+                        <h1>Forgot your password?</h1>
+                        <p class="auth-subtext">Enter your email and we'll send you a reset code.</p>
+
+                        <form id="forgot-form" class="auth-form" novalidate>
+                            <div class="form-group has-icon">
+                                <label for="forgot-email" class="sr-only">Email address</label>
+                                <i class="uil uil-envelope" aria-hidden="true"></i>
+                                <input type="email" id="forgot-email" name="email" placeholder="Email address" autocomplete="email" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send Reset Code</button>
+                        </form>
+
+                        <p class="auth-footer-text">Remembered it? <a href="#login" data-view-link="login">Log in</a></p>
+                    </div>
+
+                    <div class="auth-success" id="forgot-success" hidden>
+                        <svg class="success-check" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="24"></circle>
+                            <path d="M14 27l7 7 17-17"></path>
+                        </svg>
+                        <h2>Check your email</h2>
+                        <p>If an account exists for that address, a reset code is on its way.</p>
+                        <a href="#verify" data-view-link="verify" class="btn btn-outline btn-lg btn-block">Enter Code</a>
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                     VIEW: VERIFY CODE
+                     ============================================================ -->
+                <section class="auth-view" data-view="verify">
+
+                    <div class="auth-logo">
+                        <img src="../images/logo.svg" alt="T'S PMS logo">
+                    </div>
+
+                    <h1>Enter verification code</h1>
+                    <p class="auth-subtext">We sent a 6-digit code to your email.</p>
+
+                    <!-- 
+                        Mocked flow — no real code is sent or checked yet. The PHP
+                        backend should POST these digits to something like
+                        /api/auth/verify-code.php and only proceed on a real match.
+                    -->
+                    <form id="verify-form" class="auth-form" novalidate>
+                        <div class="otp-row" role="group" aria-label="Verification code">
+                            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="Digit 1">
+                            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="Digit 2">
+                            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="Digit 3">
+                            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="Digit 4">
+                            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="Digit 5">
+                            <input type="text" inputmode="numeric" maxlength="1" class="otp-input" aria-label="Digit 6">
+                        </div>
+
+                        <div class="countdown-row">
+                            <svg class="countdown-ring" viewBox="0 0 24 24">
+                                <circle class="ring-bg" cx="12" cy="12" r="9"></circle>
+                                <circle class="ring-fg" id="countdown-ring-fg" cx="12" cy="12" r="9"></circle>
+                            </svg>
+                            <span>Resend code in <span id="countdown-seconds">30s</span></span>
+                            <a href="#" id="resend-link" class="resend-link disabled">Resend</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Verify Code</button>
+                    </form>
+
+                    <p class="auth-footer-text">Wrong email? <a href="#forgot" data-view-link="forgot">Start over</a></p>
+
+                </section>
+
+                <!-- ============================================================
+                     VIEW: RESET PASSWORD
+                     ============================================================ -->
+                <section class="auth-view" data-view="reset">
+
+                    <div class="auth-form-wrap" id="reset-form-wrap">
+
+                        <div class="auth-logo">
+                            <img src="../images/logo.svg" alt="T'S PMS logo">
+                        </div>
+
+                        <h1>Set a new password</h1>
+                        <p class="auth-subtext">Make it something you haven't used before.</p>
+
+                        
+                        <form id="reset-form" class="auth-form" novalidate>
+                            <div class="form-group has-icon">
+                                <label for="reset-password" class="sr-only">New password</label>
+                                <i class="uil uil-lock" aria-hidden="true"></i>
+                                <input type="password" id="reset-password" name="password" placeholder="New password" autocomplete="new-password" required>
+                                <button type="button" class="input-toggle" id="toggle-reset-password" aria-label="Show password">
+                                    <i class="uil uil-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                            <div class="password-strength">
+                                <div class="password-strength-bar" id="reset-strength-bar"></div>
+                            </div>
+                            <p class="password-strength-label" id="reset-strength-label"></p>
+
+                            <div class="form-group has-icon">
+                                <label for="reset-confirm-password" class="sr-only">Confirm new password</label>
+                                <i class="uil uil-lock-alt" aria-hidden="true"></i>
+                                <input type="password" id="reset-confirm-password" name="confirm_password" placeholder="Confirm new password" autocomplete="new-password" required>
+                                <button type="button" class="input-toggle" id="toggle-reset-confirm" aria-label="Show password">
+                                    <i class="uil uil-eye" aria-hidden="true"></i>
+                                </button>
+                                <i class="uil match-icon" id="reset-match-icon" aria-hidden="true"></i>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Reset Password</button>
+                        </form>
+                    </div>
+
+                    <div class="auth-success" id="reset-success" hidden>
+                        <svg class="success-check" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="24"></circle>
+                            <path d="M14 27l7 7 17-17"></path>
+                        </svg>
+                        <h2>Password updated</h2>
+                        <p>Your password has been reset successfully.</p>
+                        <a href="#login" data-view-link="login" class="btn btn-primary btn-lg btn-block">Log In</a>
+                    </div>
+
+                </section>
+
+           </div>
+
+           
+           
+            </div>
+
+        </div>
+
+        <script src="../js/auth.js"></script>
+
+    </body>
+</html>
