@@ -1,29 +1,3 @@
-/* ============================================================================
-   T'S PMS — Auth SPA JavaScript
-   Powers auth.html, which contains ALL auth states (login, register,
-   forgot-password, verify-code, reset-password) as sibling <section
-   class="auth-view"> elements inside one .auth-card. This file's ROUTER
-   decides which one is visible; everything else (validation, the 20
-   animations) works exactly as it did across the old separate pages,
-   because every form/input keeps the same unique id it always had.
-
-   HOW NAVIGATION WORKS NOW
-   - Links/buttons with [data-view-link="register"] etc. switch views
-     in-page (fade out current, fade in next) and update the URL hash
-     (#login, #register, ...) via history.pushState — no reload.
-   - The "Back to home" link is a REAL cross-page link (../index.html) and
-     is left alone by the router — it still does a real navigation, just
-     with a quick fade-out first for continuity.
-   - On load, the router reads location.hash to decide the starting view,
-     so a link like auth.html#register opens directly on the register view.
-
-   SECURITY NOTE (same as before)
-   Nothing here is real authentication. It's UX: validation, loading
-   states, success animations. The actual check — is this password
-   correct, does this token belong to this user — happens in PHP,
-   server-side, once that layer exists.
-   ============================================================================ */
-
 (function () {
   'use strict';
 
