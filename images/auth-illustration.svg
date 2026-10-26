@@ -1,0 +1,92 @@
+<svg viewBox="0 0 640 800" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Window, top-left -->
+  <rect x="48" y="48" width="180" height="120" rx="6" fill="none" stroke="#D6DBE3" stroke-width="3"/>
+  <line x1="138" y1="48" x2="138" y2="168" stroke="#D6DBE3" stroke-width="2"/>
+  <line x1="48" y1="108" x2="228" y2="108" stroke="#D6DBE3" stroke-width="2"/>
+
+  <!-- Wall-mounted screen showing the dashboard -->
+  <rect x="300" y="56" width="228" height="138" rx="10" fill="#14181F"/>
+  <rect x="312" y="68" width="204" height="114" rx="4" fill="#FFFFFF"/>
+  <rect x="312" y="68" width="204" height="18" fill="#F0F2F5"/>
+  <circle cx="500" cy="77" r="4" fill="#E8B94B"/>
+
+  <rect x="322" y="96" width="58" height="76" rx="4" fill="#F6F7F9"/>
+  <rect x="322" y="96" width="58" height="5" rx="2" fill="#E8B94B"/>
+  <rect x="330" y="110" width="42" height="6" rx="3" fill="#D6DBE3"/>
+  <rect x="330" y="122" width="30" height="5" rx="2.5" fill="#E4E7EC"/>
+
+  <rect x="388" y="96" width="58" height="76" rx="4" fill="#F6F7F9"/>
+  <rect x="388" y="96" width="58" height="5" rx="2" fill="#3B6FE0"/>
+  <rect x="396" y="110" width="42" height="6" rx="3" fill="#D6DBE3"/>
+  <rect x="396" y="122" width="26" height="5" rx="2.5" fill="#E4E7EC"/>
+
+  <rect x="454" y="96" width="58" height="76" rx="4" fill="#F6F7F9"/>
+  <rect x="454" y="96" width="58" height="5" rx="2" fill="#E8B94B"/>
+  <rect x="462" y="110" width="34" height="6" rx="3" fill="#D6DBE3"/>
+
+  <rect x="404" y="194" width="20" height="26" fill="#D6DBE3"/>
+  <rect x="384" y="220" width="60" height="8" rx="4" fill="#D6DBE3"/>
+
+  <!-- Potted plant, bottom-left -->
+  <path d="M40 690 L90 690 L82 730 L48 730 Z" fill="#DCE6FB" stroke="#C7D3EA" stroke-width="2"/>
+  <path d="M65 690 C 55 660, 40 650, 30 630" fill="none" stroke="#9BB79E" stroke-width="7" stroke-linecap="round"/>
+  <path d="M65 690 C 70 655, 85 640, 95 615" fill="none" stroke="#9BB79E" stroke-width="7" stroke-linecap="round"/>
+  <path d="M65 690 C 66 650, 66 630, 66 605" fill="none" stroke="#9BB79E" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Round table -->
+  <ellipse cx="320" cy="565" rx="235" ry="98" fill="#FFFFFF" stroke="#E4E7EC" stroke-width="2"/>
+  <ellipse cx="320" cy="558" rx="195" ry="74" fill="#FBFBFA"/>
+
+  <!-- Person: back-left -->
+  <rect x="128" y="498" width="56" height="78" rx="18" fill="#DCE6FB"/>
+  <circle cx="156" cy="482" r="23" fill="#14181F"/>
+
+  <!-- Their laptop -->
+  <rect x="150" y="558" width="70" height="8" rx="3" fill="#D6DBE3"/>
+  <rect x="156" y="522" width="58" height="38" rx="4" fill="#14181F"/>
+  <rect x="160" y="526" width="50" height="30" rx="2" fill="#FFFFFF"/>
+  <rect x="163" y="529" width="13" height="24" fill="#F6F7F9"/>
+  <rect x="163" y="529" width="13" height="4" fill="#E8B94B"/>
+  <rect x="178" y="529" width="13" height="24" fill="#F6F7F9"/>
+  <rect x="178" y="529" width="13" height="4" fill="#3B6FE0"/>
+  <rect x="193" y="529" width="13" height="24" fill="#F6F7F9"/>
+  <rect x="193" y="529" width="13" height="4" fill="#E8B94B"/>
+
+  <!-- Person: back-right -->
+  <rect x="456" y="498" width="56" height="78" rx="18" fill="#F6E4B8"/>
+  <circle cx="484" cy="482" r="23" fill="#14181F"/>
+
+  <!-- Their laptop -->
+  <rect x="420" y="558" width="70" height="8" rx="3" fill="#D6DBE3"/>
+  <rect x="426" y="522" width="58" height="38" rx="4" fill="#14181F"/>
+  <rect x="430" y="526" width="50" height="30" rx="2" fill="#FFFFFF"/>
+  <rect x="433" y="529" width="13" height="24" fill="#F6F7F9"/>
+  <rect x="433" y="529" width="13" height="4" fill="#3B6FE0"/>
+  <rect x="448" y="529" width="13" height="24" fill="#F6F7F9"/>
+  <rect x="448" y="529" width="13" height="4" fill="#E8B94B"/>
+  <rect x="463" y="529" width="13" height="24" fill="#F6F7F9"/>
+  <rect x="463" y="529" width="13" height="4" fill="#3B6FE0"/>
+
+  <!-- Person: front-center (facing the viewer) -->
+  <rect x="286" y="648" width="68" height="96" rx="22" fill="#F6E4B8"/>
+  <circle cx="320" cy="632" r="26" fill="#14181F"/>
+
+  <!-- Their laptop, largest since it's closest to the viewer -->
+  <rect x="270" y="606" width="100" height="10" rx="4" fill="#D6DBE3"/>
+  <rect x="278" y="558" width="84" height="52" rx="5" fill="#14181F"/>
+  <rect x="284" y="563" width="72" height="42" rx="3" fill="#FFFFFF"/>
+  <rect x="289" y="568" width="19" height="32" fill="#F6F7F9"/>
+  <rect x="289" y="568" width="19" height="5" fill="#E8B94B"/>
+  <rect x="311" y="568" width="19" height="32" fill="#F6F7F9"/>
+  <rect x="311" y="568" width="19" height="5" fill="#3B6FE0"/>
+  <rect x="333" y="568" width="19" height="32" fill="#F6F7F9"/>
+  <rect x="333" y="568" width="19" height="5" fill="#E8B94B"/>
+
+  <!-- A few mugs / notepads scattered on the table for warmth -->
+  <circle cx="240" cy="595" r="9" fill="#FFFFFF" stroke="#E4E7EC" stroke-width="2"/>
+  <circle cx="400" cy="595" r="9" fill="#FFFFFF" stroke="#E4E7EC" stroke-width="2"/>
+  <rect x="215" y="640" width="30" height="22" rx="3" fill="#FFFFFF" stroke="#E4E7EC" stroke-width="2"/>
+  <rect x="395" y="640" width="30" height="22" rx="3" fill="#FFFFFF" stroke="#E4E7EC" stroke-width="2"/>
+
+</svg>

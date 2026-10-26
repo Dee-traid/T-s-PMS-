@@ -1,9 +1,8 @@
 -- User's Table
 CREATE TABLE users (
     id VARCHAR(50) PRIMARY KEY NOT NULL,
-    name VARCHAR(225) NOT NULL,
+    full_name VARCHAR(225) NOT NULL,
     email VARCHAR(20) NOT NULL,
-    full_name VARCHAR(255) NOT NULL,
     password_hash VARCHAR(50) NOT NULL,
     role VARCHAR(50) DEFAULT 'user',
     check  (role IN('user', 'admin', 'staff_admin'))
