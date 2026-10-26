@@ -1,0 +1,8 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^7.1",
+        "vlucas/phpdotenv": "^5.7",
+        "robmorgan/phinx": "^0.16.12",
+        "firebase/php-jwt": "^7.1"
+    }
+}

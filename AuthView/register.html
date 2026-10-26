@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+        <!-- Title -->
+        <title>Sign Up — T'S PMS</title>
+ 
+        <!-- Description -->
+        <meta name="description" content="Create your T'S PMS account and get your team organized in minutes.">
+ 
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="../images/logo.svg">
+ 
+        <!-- Web fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+ 
+        <!-- CSS Stylesheets -->
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/auth.css">
+ 
+    </head>
+    <body class="auth-page">
+ 
+        <div class="auth-bg-blobs" aria-hidden="true">
+            <span class="blob blob-1"></span>
+            <span class="blob blob-2"></span>
+            <span class="blob blob-3"></span>
+        </div>
+        <div class="cursor-spotlight" aria-hidden="true"></div>
+ 
+        <div class="auth-wrapper">
+            <div class="auth-card">
+ 
+                <div class="auth-form-wrap" id="register-form-wrap">
+ 
+                <div class="auth-logo">
+                    <img src="../images/logo.svg" alt="T'S PMS logo">
+                </div>
+ 
+                <h1>Create your account</h1>
+                <p class="auth-subtext">Start organizing your team's work in minutes</p>
+ 
+                <form id="register-form" class="auth-form" novalidate>
+ 
+                    <div class="form-group has-icon">
+                        <label for="register-name" class="sr-only">Full name</label>
+                        <i class="uil uil-user" aria-hidden="true"></i>
+                        <input type="text" id="register-name" name="name" placeholder="Full name" autocomplete="name" required>
+                    </div>
+ 
+                    <div class="form-group has-icon">
+                        <label for="register-email" class="sr-only">Email address</label>
+                        <i class="uil uil-envelope" aria-hidden="true"></i>
+                        <input type="email" id="register-email" name="email" placeholder="Email address" autocomplete="email" required>
+                    </div>
+ 
+                    <div class="form-group has-icon">
+                        <label for="register-password" class="sr-only">Password</label>
+                        <i class="uil uil-lock" aria-hidden="true"></i>
+                        <input type="password" id="register-password" name="password" placeholder="Password" autocomplete="new-password" required>
+                        <button type="button" class="input-toggle" id="toggle-register-password" aria-label="Show password">
+                            <i class="uil uil-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+ 
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="password-strength-bar"></div>
+                    </div>
+                    <p class="password-strength-label" id="password-strength-label"></p>
+ 
+                    <div class="form-group has-icon">
+                        <label for="register-confirm-password" class="sr-only">Confirm password</label>
+                        <i class="uil uil-lock-alt" aria-hidden="true"></i>
+                        <input type="password" id="register-confirm-password" name="confirm_password" placeholder="Confirm password" autocomplete="new-password" required>
+                        <i class="uil match-icon" id="confirm-match-icon" aria-hidden="true"></i>
+                    </div>
+ 
+                    <label class="checkbox-label auth-terms">
+                        <input type="checkbox" name="agree_terms" required>
+                        <span>I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></span>
+                    </label>
+ 
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Create Account</button>
+ 
+                </form>
+ 
+                <div class="auth-divider"><span>or continue with</span></div>
+ 
+                <div class="auth-social">
+                    <button type="button" class="social-btn" aria-label="Continue with Google">G</button>
+                    <button type="button" class="social-btn" aria-label="Continue with GitHub">Gh</button>
+                    <button type="button" class="social-btn" aria-label="Continue with X">X</button>
+                </div>
+ 
+                <p class="auth-footer-text">Already have an account? <a href="login.html">Log in</a></p>
+ 
+                </div>
+ 
+                <div class="auth-success" id="register-success" hidden>
+                    <svg class="success-check" viewBox="0 0 52 52">
+                        <circle cx="26" cy="26" r="24"></circle>
+                        <path d="M14 27l7 7 17-17"></path>
+                    </svg>
+                    <h2>You're all set!</h2>
+                    <p>Your account has been created. Redirecting you to log in&hellip;</p>
+                </div>
+ 
+            </div>
+        </div>
+ 
+        <script src="../js/auth.js"></script>
+ 
+    </body>
+</html>
+ 
